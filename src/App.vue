@@ -1,10 +1,10 @@
 
 <script setup>
 import { useDark, useToggle } from '@vueuse/core';
-import { onMounted, ref } from 'vue';
-import { RouterLink, RouterView } from 'vue-router';
+import { onMounted, ref, computed } from 'vue';
+import { RouterView, useRoute, useRouter } from 'vue-router';
 
-import { useColorMode } from 'bootstrap-vue-next';
+import { useBreadcrumb, useColorMode } from 'bootstrap-vue-next';
 
 import Header from './components/Header.vue';
 import Footer from './views/layout/FooterView.vue';
@@ -37,11 +37,61 @@ onMounted(() => {
   console.log(root.value)
 })
 
+
+
+const breadcrumb = useBreadcrumb()
+
+const items = [
+  {
+    text: 'Home',
+    href: 'https://google.com'
+  },
+  {
+    text: 'Posts',
+    to: { name: 'home' }
+  },
+  {
+    text: 'Another Story',
+    active: true
+  }
+]
+
+const addItem = () => {
+  breadcrumb.items= items
+  // breadcrumb.items.push(path)
+  // inputValue.value = ''
+}
+
+const route = useRoute()
+const router = useRouter()
+console.log('route===============',route);
+console.log('router===============',router);
+console.log('router.currentRoute.value===============',router.currentRoute.value);
+console.log('route.name===============',route.name); 
+ 
+const pathname = location.pathname;
+console.log('pathname===============',pathname); 
+const breadcrumbStringArray = [
+  {href:'/', text:'Home'}, 
+  {href:pathname, text:pathname.replace('/','')}, 
+]
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <template>
  
   <div ref="root">
-    </div>
 
     <button @click="toggleDark()">
   <span class="ml-2">{{ isDark ? 'Dark' : 'Light' }} mode</span>
@@ -59,8 +109,10 @@ onMounted(() => {
  
 
   <Header />
+  <BBreadcrumb :items="breadcrumbStringArray" />
   <RouterView />
   <Footer />
+    </div>
 </template>
 
 

@@ -30,6 +30,15 @@ const router = createRouter({
       component: () => import('../views/BoardView.vue')
     },
     {
+      path: '/write',
+      name: 'write',
+      component: () => import('../views/BoardWrite.vue'),
+      meta: {  
+        breadcrumb: "write",
+        requiresAuth: true,
+      },
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
@@ -39,5 +48,11 @@ const router = createRouter({
     },
   ]
 })
+
+// router.beforeEach((to, from, next) => {
+//   if (to.name !== 'Login' && !isAuthenticated) next({ name: 'Logins' })
+//   else next()
+// })
+
 
 export default router

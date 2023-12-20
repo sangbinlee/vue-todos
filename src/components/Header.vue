@@ -8,7 +8,7 @@
         <BNavItem href="/setup">Setup</BNavItem>
         <BNavItem href="/dark">Dark & Light Mode</BNavItem>
         <BNavItem href="/board">Board</BNavItem>
-        <BNavItem href="/setup">Setup</BNavItem>
+        <BNavItem href="/write">write</BNavItem>
         <BNavItem href="/setup">Setup</BNavItem>
         <BNavItem href="/about">About</BNavItem>
         <!-- <BNavItem href="#" disabled>Disabled</BNavItem> -->
@@ -40,6 +40,12 @@
       </BNavForm>
     </BCollapse>
   </BNavbar>
+
+
+
+
+
+  
 </template>
 
 <script setup>

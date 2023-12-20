@@ -19,8 +19,24 @@ const items = [
 
 // const fields = [ '나이' , '성']
 const fields = [
-  'selected',
-  'index',
+  {
+    key: 'checked',
+    label: '선택',
+    thStyle: { width: "60px" , textAlign:'center'  },
+    sortable: false
+  },
+  {
+    key: 'selected',
+    label: 'selected',
+    thStyle: { width: "60px" , textAlign:'center'  },
+    sortable: false
+  },
+  {
+    key: 'index',
+    label: 'index',
+    thStyle: { width: "60px" , textAlign:'center'  },
+    sortable: false
+  },
   {
     key: 'userId',
     label: 'userId',
@@ -30,18 +46,19 @@ const fields = [
   {
     key: 'id',
     label: 'No',
+    thStyle: { width: "60px" , textAlign:'center'  },
     sortable: false
   },
   {
     key: 'titles',
     label: '제목s',
-    thStyle: { width: "10%" },
-    sortable: true
+    thStyle: { width: "40%" , textAlign:'center'  },
+    sortable: false
   },
   {
     key: 'title',
     label: '제목',
-    thStyle: { width: "10%" },
+    thStyle: { width: "40%" },
     sortable: true
   },
   // {
@@ -54,10 +71,10 @@ const fields = [
   { key: 'actions', label: 'Actions' },
  ];
 
-const currentPage = ref(1);
+let currentPage = ref(1);
 const ex1PerPage = ref(10);
 const ex1Rows = ref(0);
-const totalRows = ref(0);
+let totalRows = ref(0);
 const posts = ref([]);
   
 const headVariant = 'dark'
@@ -84,7 +101,14 @@ let sortBy = ref('');
 let sortDesc = ref(false);
 
 const onRowClicked = (item, index, event) => {
-  // console.log("Index", index)
+  console.log("Index", index)
+  console.log("  selectableTable.value.selected(index)",   selectableTable.value.selected(index))
+
+  selectableTable.value.sel
+
+  // selectableTable.value.selectRow(index)
+  // selectableTable.value.unselectRow(index)
+
   // console.log("Item", item)
   // console.log("event", event)
 }
@@ -103,7 +127,7 @@ function selectAllRows() {
   selectableTable.value.selectAllRows()
   // $refs.selectableTable.selectAllRows()
 }
-function      clearSelected() {
+function clearSelected() {
   selectableTable.value.clearSelected()
   // this.$refs.selectableTable.clearSelected()
 }
@@ -304,7 +328,8 @@ onMounted(() => {
   </BFormGroup>
     
     <!-- @row-dbl-clicked="onRowDblClicked" -->
-  <BTable 
+    <!-- fixed -->
+  <BTable :style="{height:'800px'}"
   :filter="filter"
   :items="posts" 
     :fields="fields" 
@@ -318,7 +343,6 @@ onMounted(() => {
     :tbody-tr-class="rowClass"
     :head-variant="headVariant"
     responsive="sm" 
-    fixed
     stickyHeader
       ref="selectableTable"
     :select-mode="selectMode"
@@ -328,6 +352,11 @@ onMounted(() => {
       :sort-desc="sortDesc"
       sort-icon-left
     >
+
+      <!-- A virtual column -->
+      <template #cell(checked)="data">
+       <input type="checkbox">
+      </template>
 
 
       <!-- Example scoped slot for select state illustrative purposes -->
@@ -341,11 +370,6 @@ onMounted(() => {
           <span class="sr-only">Not selected</span>
         </template>
       </template>
-
-
-
-
-
 
 
 
@@ -382,7 +406,31 @@ onMounted(() => {
 
 
   </BTable>
-  <BPagination
+
+  <div  style="position: absolute; right: 10px;">
+
+
+
+  <BFormGroup
+    id="fieldset-1"
+    label="페이지"
+    label-for="select-1"  
+    label-class="mb-1 "
+  >
+    <BInputGroup  class="mb-3">
+      <BFormSelect  id="select-1"  v-model="ex1Selected" :options="ex1Options" /> 
+    </BInputGroup>
+  </BFormGroup>
+
+
+
+
+
+
+
+
+
+    <BPagination 
     v-model="currentPage"
     :total-rows="totalRows"
     :per-page="10"
@@ -391,6 +439,7 @@ onMounted(() => {
     next-text="Next"
     last-text="Last"
   />
+  </div>
   Current page : {{ currentPage }}
 
   <p>
