@@ -34,7 +34,7 @@ const fields = [
   {
     key: 'index',
     label: 'index',
-    thStyle: { width: "60px" , textAlign:'center'  },
+    thStyle: { width: "60px" , textAlign:'right'  },
     sortable: false
   },
   {
@@ -52,13 +52,13 @@ const fields = [
   {
     key: 'titles',
     label: '제목s',
-    thStyle: { width: "40%" , textAlign:'center'  },
+    thStyle: { width: "20%" , textAlign:'center'  },
     sortable: false
   },
   {
     key: 'title',
     label: '제목',
-    thStyle: { width: "40%" },
+    thStyle: { width: "20%" },
     sortable: true
   },
   // {
@@ -84,10 +84,11 @@ const headVariant = 'dark'
 const filter = ref(null);
 const filterOn = ref( []);
 
-
+filterOn.value.push('title')
 
 const selectableTable = ref(null);
 const selected = ref([]);
+const checkeds = ref([]);
 const modes= ['multi', 'single', 'range']
 const selectMode = ref(modes[2]);
 
@@ -102,9 +103,9 @@ let sortDesc = ref(false);
 
 const onRowClicked = (item, index, event) => {
   console.log("Index", index)
-  console.log("  selectableTable.value.selected(index)",   selectableTable.value.selected(index))
+  // console.log("  selectableTable.value.selected(index)",   selectableTable.value.selected(index))
 
-  selectableTable.value.sel
+  // selectableTable.value.sel
 
   // selectableTable.value.selectRow(index)
   // selectableTable.value.unselectRow(index)
@@ -216,8 +217,30 @@ const getData = () => {
   .then((response) => {
     posts.value = response.data;
 
+    posts.value.map((o, i) => {
+      if (i==0 || i==3) {
+      //  o.checked = 'Y';
+      //  o.checked = true;
+       o.checked = 1;
+      } else {
+      //  o.checked = 'N';
+      //  o.checked = false;
+       o.checked = 0;
+      }
+      return o;
+    });
 
-    posts.value.splice(0, 0, item)
+
+
+
+
+
+
+
+
+
+
+    // posts.value.splice(0, 0, item)
 
     ex1Rows.value = posts.value.length;
     totalRows.value = posts.value.length;
@@ -292,6 +315,31 @@ onMounted(() => {
   getData()
   // getData()
 })
+
+
+
+
+
+
+
+
+
+
+
+const perPage = ref(5) 
+const pageOptions =   [5, 10, 15, { value: 100, text: "Show a lot" }]
+
+
+
+ 
+
+function selection(item) {
+    if (item) checkeds.value.push(item);
+    else  checkeds.value = checkeds.value.map(x => x != item);
+}
+
+
+
 </script>
 
 
@@ -331,9 +379,11 @@ onMounted(() => {
     <!-- fixed -->
   <BTable :style="{height:'800px'}"
   :filter="filter"
+      @filtered="onFiltered"
+      :filter-included-fields="filterOn"
   :items="posts" 
     :fields="fields" 
-    per-page="10"
+    :per-page="perPage"
     :current-page="currentPage"
     primary-key="id"
     @row-clicked="onRowClicked"
@@ -355,7 +405,23 @@ onMounted(() => {
 
       <!-- A virtual column -->
       <template #cell(checked)="data">
-       <input type="checkbox">
+       <!-- <input type="checkbox" v-model="data.item.checked" @change="selection(data.item)"/> -->
+
+       <!-- <BFormCheckboxGroup  v-model="data.item.checked"> -->
+          <!-- <BFormCheckbox   value="Y" required></BFormCheckbox>  -->
+          <!-- <BFormCheckbox   value="true" required></BFormCheckbox>  -->
+          <!-- <BFormCheckbox   value="1" ></BFormCheckbox> 
+        </BFormCheckboxGroup> -->
+
+        <BFormCheckboxGroup
+          v-model="data.item.checked"
+          :options="[1]"
+          class="mb-3"
+          value-field="item"
+          text-field="name"
+          disabled-field="notEnabled"
+        />
+
       </template>
 
 
@@ -376,7 +442,7 @@ onMounted(() => {
 
       <!-- A virtual column -->
       <template #cell(index)="data">
-        {{ ((currentPage -1 ) * 10) + data.index + 1 }}
+        {{ ((currentPage -1 ) * perPage) + data.index + 1 }}
       </template>
 
       <!-- A custom formatted column -->
@@ -390,7 +456,13 @@ onMounted(() => {
 
       <template #cell(actions)="row">
         <BButton size="sm" @click="info(row.item, row.index, $event.target )" class="mr-1">
-          Info modal 
+          상세
+        </BButton>
+        <BButton size="sm" @click="info(row.item, row.index, $event.target )" class="mr-1">
+          수정
+        </BButton>
+        <BButton size="sm" @click="info(row.item, row.index, $event.target )" class="mr-1">
+          삭제
         </BButton>
         <!-- <BButton size="sm" @click="row.toggleDetails">
         {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
@@ -417,9 +489,8 @@ onMounted(() => {
     label-for="select-1"  
     label-class="mb-1 "
   >
-    <BInputGroup  class="mb-3">
-      <BFormSelect  id="select-1"  v-model="ex1Selected" :options="ex1Options" /> 
-    </BInputGroup>
+      <BFormSelect  id="select-1"    v-model="perPage"
+            :options="pageOptions" /> 
   </BFormGroup>
 
 
@@ -433,7 +504,7 @@ onMounted(() => {
     <BPagination 
     v-model="currentPage"
     :total-rows="totalRows"
-    :per-page="10"
+    :per-page="perPage"
     first-text="First"
     prev-text="Prev"
     next-text="Next"

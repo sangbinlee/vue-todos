@@ -18,8 +18,8 @@
           type="email"
           placeholder="Enter email"
           required
-          :state="validation"
         />
+          <!-- :state="validation" -->
       </BFormGroup>
 
       <BFormGroup  label-cols="4" label-cols-lg="2"
@@ -54,13 +54,32 @@
       </BFormGroup>
 
       <BFormGroup  label-cols="4" label-cols-lg="2"
-      id="input-group-4" label="해당하는 모두 체크하세요" label-for="input-4">
-        <BFormCheckboxGroup v-model="form.checked_1_hobby" id="input-4" >
+      id="input-group-4" label="체크하세요" label-for="">
+        <!-- <BFormCheckboxGroup v-model="form.checked_1_hobby" id="input-4" >
           <BFormCheckbox value="pingpong">pingpong</BFormCheckbox>
           <BFormCheckbox value="tenis">tenis</BFormCheckbox>
           <BFormCheckbox value="swim" required>swim</BFormCheckbox>
           <BFormCheckbox value="movie" >movie</BFormCheckbox>
-        </BFormCheckboxGroup>
+        </BFormCheckboxGroup> -->
+        <BFormCheckboxGroup
+          v-model="form.checked_1_hobby"
+          :options="checkEx2Options"
+          class="mb-3"
+          value-field="item"
+          text-field="name"
+          disabled-field="notEnabled"
+        />
+        <!-- <BFormCheckbox
+          v-for="(car, index) in availableCars"
+          :key="index"
+          v-model="form.checked_1_hobby"
+          :value="car"
+        >
+          {{ car }}
+        </BFormCheckbox> -->
+
+
+
       </BFormGroup>
 
       <BFormGroup  label-cols="4" label-cols-lg="2"
@@ -101,6 +120,24 @@ const foods = [
   { text: "Tomatoes", value: '003' },
   { text: "Corn", value: '004' },
 ];
+
+const availableCars = ['BMW', 'Mercedes', 'Toyota']
+
+
+
+const checkEx2Options = [
+  {item: 'A', name: 'Option A'},
+  {item: 'B', name: 'Option B'},
+  {item: 'D', name: 'Option C', notEnabled: true},
+  {item: {d: 1}, name: 'Option D'},
+]
+
+
+
+
+
+
+
 
 const form = reactive({
   tags : ref(['apple', 'orange']),
