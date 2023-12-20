@@ -2,6 +2,7 @@
 
 <script setup>
 import { onMounted, ref } from "vue";
+// import { onMounted, ref, reactive } from "vue";
 
 import axios from "axios";
 import { useModal } from 'bootstrap-vue-next';
@@ -70,6 +71,53 @@ const fields = [
   
   { key: 'actions', label: 'Actions' },
  ];
+
+
+
+//  let allChecked = ref(0);// 전체 체크 박스
+ let allChecked = ref(false);// 전체 체크 박스
+//  let allChecked = ref(true);// 전체 체크 박스
+
+function allCheckeds(item, isChecked){ 
+  console.log('item=========',item);
+  console.log('isChecked=========',isChecked);
+  if (item === undefined) {
+
+    console.log('allChecked.value===', allChecked.value );
+    console.log('allChecked.value===', allChecked.value ===true); 
+
+    const aaa= '001'
+    const bbb= 1
+    console.log('aaa=',aaa, 'bbb=',bbb);
+
+    posts.value.map((o, i) => {
+      if (allChecked.value ===true) {
+      //  o.checked = 'Y';
+       o.checked = true;
+      //  o.checked = 1;
+      } else {
+      //  o.checked = 'N';
+       o.checked = false;
+      //  o.checked = 0;
+      }
+      return o;
+    });
+
+
+
+  } else {
+
+    const index = item.id 
+    console.log('체크하신 행은 ' + index + ' 입니다.' + isChecked)
+
+
+
+
+  }
+}
+
+
+
 
 let currentPage = ref(1);
 const ex1PerPage = ref(10);
@@ -220,12 +268,12 @@ const getData = () => {
     posts.value.map((o, i) => {
       if (i==0 || i==3) {
       //  o.checked = 'Y';
-      //  o.checked = true;
-       o.checked = 1;
+       o.checked = true;
+      //  o.checked = 1;
       } else {
       //  o.checked = 'N';
-      //  o.checked = false;
-       o.checked = 0;
+       o.checked = false;
+      //  o.checked = 0;
       }
       return o;
     });
@@ -309,10 +357,14 @@ function deleteData(){
 }
 
 onMounted(() => {
+  console.log('onMounted')
+  getData()
+
+
+
 
   // patchData()
   // deleteData()
-  getData()
   // getData()
 })
 
@@ -403,6 +455,24 @@ function selection(item) {
       sort-icon-left
     >
 
+
+
+
+      <!-- A custom formatted header cell for field 'name' -->
+      <template #head(checked)="data">
+        <!-- <span class="text-info">{{ data.label.toUpperCase() }}</span> -->
+
+        <!-- @click="allCheckeds(data.item)"// 변경 전 값 -->
+          <!-- @change="allCheckeds(data.item)"// 변경 후 값 -->
+        <BFormCheckbox
+          v-model="allChecked"
+          true-value="true"
+          false-value="false"
+          @change="allCheckeds(data.item)"
+        />
+      </template>
+
+
       <!-- A virtual column -->
       <template #cell(checked)="data">
        <!-- <input type="checkbox" v-model="data.item.checked" @change="selection(data.item)"/> -->
@@ -413,13 +483,15 @@ function selection(item) {
           <!-- <BFormCheckbox   value="1" ></BFormCheckbox> 
         </BFormCheckboxGroup> -->
 
-        <BFormCheckboxGroup
+        
+        
+        <!-- value-field="item"
+          text-field="name" -->
+        <BFormCheckbox
           v-model="data.item.checked"
-          :options="[1]"
-          class="mb-3"
-          value-field="item"
-          text-field="name"
-          disabled-field="notEnabled"
+          true-value="true"
+          false-value="false"
+          @change="allCheckeds(data.item, data.item.checked)"
         />
 
       </template>

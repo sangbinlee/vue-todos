@@ -79,6 +79,11 @@
         </BFormCheckbox> -->
 
 
+        <BFormCheckbox
+          v-model="form.checked_1_hobby3"
+          value="1"
+        >
+        </BFormCheckbox>
 
       </BFormGroup>
 
