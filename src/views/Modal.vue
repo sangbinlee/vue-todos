@@ -3,6 +3,8 @@
   
   https://www.youtube.com/watch?v=38PWm8TgaV0&list=PLfLgtT94nNq3Br68sEe26jkOqCPK_8UQ-&index=7
 
+https://codingapple.com/unit/vue-data-import-export/?id=139
+
 코딩애플 참조
 
 -->
