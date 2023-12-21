@@ -10,9 +10,19 @@ const router = createRouter({
       component: HomeView
     },
     {
+      path: '/modal',
+      name: 'modal',
+      component: () => import('../views/Modal.vue')
+    },
+    {
       path: '/login',
       name: 'Login',
-      component: () => import('../views/LoginView.vue')
+      component: () => import('../views/Login.vue')
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: () => import('../views/SignUp.vue')
     },
     {
       path: '/setup',

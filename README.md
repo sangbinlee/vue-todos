@@ -45,8 +45,14 @@ npm run build
 
 
 # npm install axios
-#
-#
+
+
+
+# vue 파일에서 템플릿 코드 단축키
+
+    v3s 치고 ctrl + space  하고 엔터
+
+# npm i bootstrap-icons
 #
 #
 #

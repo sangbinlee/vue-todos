@@ -1,7 +1,9 @@
 <template>
-  <div class="about">
-    <h1>This is an footer page</h1>
-  </div>
+  <footer class="footer mt-auto py-3 bg-body-tertiary">
+    <div class="container">
+      <span class="text-body-secondary">Place sticky footer content here.</span>
+    </div>
+  </footer>
 </template>
 
  

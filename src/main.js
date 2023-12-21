@@ -6,7 +6,9 @@ import router from './router'
 import BootstrapVueNext from 'bootstrap-vue-next'
 // main.js/ts
 import 'bootstrap/dist/css/bootstrap.css'
+import "bootstrap-icons/font/bootstrap-icons.css"
 import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
+import "bootstrap"
 const app = createApp(App)
 
 app.use(router)

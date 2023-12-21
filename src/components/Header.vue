@@ -5,13 +5,20 @@
     <BCollapse id="nav-collapse" is-nav>
       <BNavbarNav>
         <!-- <BNavItem href="/">Home</BNavItem> -->
+        <!-- <BNavItem href="#" disabled>Disabled</BNavItem> -->
         <BNavItem href="/setup">Setup</BNavItem>
         <BNavItem href="/dark">Dark & Light Mode</BNavItem>
         <BNavItem href="/board">Board</BNavItem>
         <BNavItem href="/write">write</BNavItem>
         <BNavItem href="/setup">Setup</BNavItem>
         <BNavItem href="/about">About</BNavItem>
-        <!-- <BNavItem href="#" disabled>Disabled</BNavItem> -->
+
+        <!-- 회원가입 -->
+        <BNavItem href="/signup">signup</BNavItem>
+        <!-- 로그인 -->
+        <BNavItem href="/login">login</BNavItem>
+        <!-- 모달 -->
+        <BNavItem href="/modal">modal</BNavItem>
 
 
 
