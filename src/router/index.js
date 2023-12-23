@@ -10,6 +10,16 @@ const router = createRouter({
       component: HomeView
     },
     {
+      path: '/json',
+      name: 'json',
+      component: () => import('../components/json.vue')
+    },
+    {
+      path: '/json-view/:id',
+      name: 'json-view',
+      component: () => import('../components/JsonView.vue')
+    },
+    {
       path: '/modal',
       name: 'modal',
       component: () => import('../views/Modal.vue')

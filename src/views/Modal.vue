@@ -190,17 +190,7 @@ const isModalOpen = ref(false)
 
 <style lang="scss" scoped>
 
-
-
-
-
-@import "bootstrap-icons/font/bootstrap-icons.css";
-
-
-
-
-
-
+ 
 
 
 body {

@@ -4,6 +4,9 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import BootstrapVueNext from 'bootstrap-vue-next'
+
+import axios from 'axios'
+
 // main.js/ts
 import 'bootstrap/dist/css/bootstrap.css'
 import "bootstrap-icons/font/bootstrap-icons.css"
@@ -12,6 +15,7 @@ import "bootstrap"
 const app = createApp(App)
 
 app.use(router)
+// app.use(axios)
 
 app.use(BootstrapVueNext)
 app.mount('#app')
