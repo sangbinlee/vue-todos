@@ -71,7 +71,7 @@ npm run build
         [21:56:12]: ▸ Error: Cannot find module @rollup/rollup-linux-x64-gnu. npm has a bug related to optional dependencies (https://github.com/npm/cli/issues/4828). Please try `npm i` again after removing both package-lock.json and node_modules directory.    
 
 
-#
+# npm i @rollup/rollup-linux-x64-gnu --save-optional
 #
 #
 #
