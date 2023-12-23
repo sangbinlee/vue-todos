@@ -4,7 +4,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 // import Icons from 'unplugin-icons/vite'
 import Components from 'unplugin-vue-components/vite'
-// import {BootstrapVueNextResolver} from 'unplugin-vue-components/resolvers'
+import {BootstrapVueNextResolver} from 'unplugin-vue-components/resolvers'
 // import IconsResolve from 'unplugin-icons/resolver'
 
 
@@ -14,7 +14,7 @@ export default defineConfig({
     vue(),
     Components({
       resolvers: [
-        // BootstrapVueNextResolver(),
+        BootstrapVueNextResolver(),
         // IconsResolve(),
       ],
       // dts: true,

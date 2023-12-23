@@ -1,17 +1,16 @@
 import './assets/main.css'
 
+import BootstrapVueNext from 'bootstrap-vue-next'
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import BootstrapVueNext from 'bootstrap-vue-next'
 
-import axios from 'axios'
 
 // main.js/ts
-import 'bootstrap/dist/css/bootstrap.css'
+// import "bootstrap"
 import "bootstrap-icons/font/bootstrap-icons.css"
 import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
-import "bootstrap"
+import 'bootstrap/dist/css/bootstrap.css'
 const app = createApp(App)
 
 app.use(router)
