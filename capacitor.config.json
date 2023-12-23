@@ -1,0 +1,8 @@
+{
+  "appId": "vue.todos",
+  "appName": "vue-todos",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  }
+}
