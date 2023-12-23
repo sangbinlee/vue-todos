@@ -1,5 +1,13 @@
 <template>
 
+  <h1>this is parent json </h1>
+
+
+  <div class="container">
+    <Child1 :data1="child1_data"/>
+    <Child2 :data2="child2_data"/>
+  </div>
+
   <table class="table align-middle table-sm table-bordered table-dark  table-striped table-hover">
     <thead>
       <tr> 
@@ -35,6 +43,25 @@
 </template>
 
 <script setup>
+
+
+// https://www.youtube.com/watch?v=tUw8BmbXW58
+import Child1 from './jsonChild1.vue'
+import Child2 from './jsonChild2.vue'
+
+
+
+let child1_data = ref(' xxx child 1 data...........');
+let child2_data = ref(' xxx child 2 data...........');
+
+
+
+
+
+
+
+
+
 import Api from '@/services/Api';
 import { onMounted, ref } from 'vue';
 import router from '@/router'
