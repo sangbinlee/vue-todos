@@ -53,7 +53,24 @@ npm run build
     v3s 치고 ctrl + space  하고 엔터
 
 # npm i bootstrap-icons
-#
+
+
+
+
+#  build  in ionic android 
+
+
+    error
+
+        $ yarn run build
+        [21:56:11]: ▸ yarn run v1.22.19
+        [21:56:11]: ▸ $ vite build
+        [21:56:12]: ▸ /builds/sangbinlee/vue-todos/node_modules/rollup/dist/native.js:87
+        [21:56:12]: ▸ throw new Error(
+        [21:56:12]: ▸ ^
+        [21:56:12]: ▸ Error: Cannot find module @rollup/rollup-linux-x64-gnu. npm has a bug related to optional dependencies (https://github.com/npm/cli/issues/4828). Please try `npm i` again after removing both package-lock.json and node_modules directory.    
+
+
 #
 #
 #
