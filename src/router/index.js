@@ -10,6 +10,11 @@ const router = createRouter({
       component: HomeView
     },
     {
+      path: '/todo',
+      name: 'todo',
+      component: () => import('../components/todo.vue')
+    },
+    {
       path: '/json',
       name: 'json',
       component: () => import('../components/json.vue')

@@ -6,6 +6,7 @@
       <BNavbarNav>
         <!-- <BNavItem href="/">Home</BNavItem> -->
         <!-- <BNavItem href="#" disabled>Disabled</BNavItem> -->
+        <BNavItem href="/todo">todo</BNavItem>
         <BNavItem href="/json">json</BNavItem>
         <BNavItem href="/setup">Setup</BNavItem>
         <BNavItem href="/dark">Dark & Light Mode</BNavItem>
