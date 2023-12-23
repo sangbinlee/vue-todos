@@ -1,18 +1,18 @@
 ## Capacitor Plugins
 
 ### @capacitor
-- **app@5.0.6**
-- **haptics@5.0.6**
-- **keyboard@5.0.7**
-- **status-bar@5.0.6**
+- **app@null**
+- **haptics@null**
+- **keyboard@null**
+- **status-bar@null**
 ## Cordova Plugins
 
 ## Dependencies
 
 ### @capacitor
-- **android@5.6.0**
-- **cli@5.6.0**
-- **core@5.6.0**
+- **android@null**
+- **cli@null**
+- **core@null**
 ### @vitejs
 - **plugin-vue@4.5.2**
 ### @vue
